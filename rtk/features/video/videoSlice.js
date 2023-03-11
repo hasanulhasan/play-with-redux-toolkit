@@ -11,12 +11,10 @@ const initialState = {
 const fetchVideos = createAsyncThunk('post/fetchVideos', async () => {
   const res = await fetch('http://localhost:9000/videos');
   const videos = await res.json();
-  // console.log('from fetch video', videos)
   return videos;
 })
 
 const fetchByTags = createAsyncThunk('post/fetchByTags', async (tags) => {
-  console.log("from tags async", tags);
   let queryString = '';
   if (tags?.length > 0) {
     queryString += tags.map(tag => `tags_like=${tag}`).join('&');
